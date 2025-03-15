@@ -48,7 +48,7 @@
         <button onclick="nextStep(1)">Yes.</button>
         
         <div id="step1" class="hidden">
-            <p>What's the best thing that happened to me? Solve this: Look in the mirror</p>
+            <p>What's the best thing that happened to me? Solve this: Look in the mirror?</p>
             <input type="text" id="answer1" placeholder="Your Answer">
             <button onclick="checkAnswer(1, 'ME', 'MJ')">Submit</button>
         </div>
@@ -87,6 +87,7 @@
 
     <script>
         function nextStep(step) {
+            // Show the next step without clearing previous steps
             document.getElementById(`step${step}`).classList.remove('hidden');
         }
 
