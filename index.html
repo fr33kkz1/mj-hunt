@@ -11,6 +11,30 @@
         button { padding: 10px 20px; margin: 10px; border: none; background-color: #ff6f61; color: white; cursor: pointer; border-radius: 5px; font-size: 16px; }
         button:hover { background-color: #d9534f; }
         input { padding: 10px; width: 80%; border: 2px solid #ff6f61; border-radius: 5px; font-size: 16px; text-align: center; }
+        
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            background-color: #ff4081;
+            border-radius: 50%;
+            animation: rise 5s infinite ease-in;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-500px); opacity: 0; }
+        }
+
+        .pop {
+            animation: pop 0.5s ease forwards;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
     </style>
 </head>
 <body>
@@ -24,7 +48,7 @@
         <button onclick="nextStep(1)">Yes.</button>
         
         <div id="step1" class="hidden">
-            <p>What's the best thing that happened to me? Solve this: Look in the mirror?</p>
+            <p>What's the best thing that happened to me? Solve this: Look in the mirror</p>
             <input type="text" id="answer1" placeholder="Your Answer">
             <button onclick="checkAnswer(1, 'ME', 'MJ')">Submit</button>
         </div>
@@ -41,13 +65,13 @@
             <button onclick="checkAnswer(3, '30th March 2001', '30/03/2001', '30 March')">Submit</button>
         </div>
         
-       <div id="step4" class="hidden">
+        <div id="step4" class="hidden">
             <p>Where did we go on my birthday when you worked in Kinara? (Hint - Name of the place)</p>
             <input type="text" id="answer4" placeholder="Your Answer">
             <button onclick="checkAnswer(4, 'Escape Rooms')">Submit</button>
         </div>
         
-         <div id="step5" class="hidden">
+        <div id="step5" class="hidden">
             <p>What's my best memory of you? (THINK HARD MJ)</p>
             <input type="text" id="answer5" placeholder="Your Answer">
             <button onclick="checkFinalAnswer()">Submit</button>
@@ -57,28 +81,45 @@
             <h2 style="color: #ff4081;">Congratulations, MJ!</h2>
             <p>You’ve completed the treasure hunt. Here’s your final gift:</p>
             <a href="your-book-link-here" target="_blank"><button>Open Your Special Book</button></a>
+            <div id="balloon-container"></div>
         </div>
     </div>
 
     <script>
         function nextStep(step) {
-    document.getElementById(`step${step}`).classList.remove('hidden');
-}
-
-function checkAnswer(step, ...correctAnswers) {
-    let userAnswer = document.getElementById(`answer${step}`).value.trim().toLowerCase();
-    if (correctAnswers.some(ans => ans.toLowerCase() === userAnswer)) {
-        document.getElementById(`step${step}`).classList.add('hidden');
-        if (step < 5) {
-            document.getElementById(`step${step + 1}`).classList.remove('hidden');
-        } else {
-            document.getElementById('final').classList.remove('hidden');
+            document.getElementById(`step${step}`).classList.remove('hidden');
         }
-    } else {
-        alert('Try again!');
-    }
-}
 
+        function checkAnswer(step, ...correctAnswers) {
+            let userAnswer = document.getElementById(`answer${step}`).value.trim().toLowerCase();
+            if (correctAnswers.some(ans => ans.toLowerCase() === userAnswer)) {
+                document.getElementById(`step${step}`).classList.add('hidden');
+                if (step < 5) {
+                    document.getElementById(`step${step + 1}`).classList.remove('hidden');
+                } else {
+                    document.getElementById('final').classList.remove('hidden');
+                    createBalloons(); // Function to create and pop balloons
+                }
+            } else {
+                alert('Try again!');
+            }
+        }
+
+        function createBalloons() {
+            const balloonContainer = document.getElementById('balloon-container');
+            
+            for (let i = 0; i < 10; i++) { // Create 10 balloons
+                let balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.left = `${Math.random() * 90}%`;  // Random horizontal position
+                balloonContainer.appendChild(balloon);
+                
+                // After a short delay, trigger the pop animation
+                setTimeout(() => {
+                    balloon.classList.add('pop');
+                }, i * 100); // Slight delay for each balloon
+            }
+        }
     </script>
 </body>
 </html>
