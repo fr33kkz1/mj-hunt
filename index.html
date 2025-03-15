@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MJ's Treasure Hunt</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
-        .container { max-width: 600px; margin: 50px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        body { font-family: Arial, sans-serif; text-align: center; background: linear-gradient(135deg, #ff9a9e, #fad0c4); color: #333; }
+        .container { max-width: 600px; margin: 50px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
         .hidden { display: none; }
-        button { padding: 10px 20px; margin: 10px; border: none; background-color: #008CBA; color: white; cursor: pointer; border-radius: 5px; }
-        button:hover { background-color: #005f73; }
+        button { padding: 10px 20px; margin: 10px; border: none; background-color: #ff6f61; color: white; cursor: pointer; border-radius: 5px; font-size: 16px; }
+        button:hover { background-color: #d9534f; }
+        input { padding: 10px; width: 80%; border: 2px solid #ff6f61; border-radius: 5px; font-size: 16px; text-align: center; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>MJ's Treasure Hunt</h1>
+        <h1 style="color: #ff4081;">MJ's Treasure Hunt</h1>
         <p id="story">Welcome, MJ! Your journey begins now. Click below to start!</p>
         <button onclick="nextStep(1)">Start</button>
         
@@ -49,7 +50,7 @@
         </div>
         
         <div id="final" class="hidden">
-            <h2>Congratulations, MJ!</h2>
+            <h2 style="color: #ff4081;">Congratulations, MJ!</h2>
             <p>You’ve completed the treasure hunt. Here’s your final gift:</p>
             <a href="your-book-link-here" target="_blank"><button>Open Your Special Book</button></a>
         </div>
