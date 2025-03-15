@@ -16,8 +16,12 @@
 <body>
     <div class="container">
         <h1 style="color: #ff4081;">MJ's Treasure Hunt</h1>
-        <p id="story">Welcome, MJ! Your journey begins now. Click below to start!</p>
-        <button onclick="nextStep(1)">Start</button>
+        <p>Welcome MJ!</p>
+        <p><strong>HAPPY BIRTHDAY TO YOU AGAIN</strong></p>
+        <p>I've made this <em>SIMPLE</em> treasure hunt for you, and then you unlock a small prize.</p>
+        <p>Are you excited and ready?</p>
+        <button onclick="nextStep(1)">YES!</button>
+        <button onclick="nextStep(1)">Yes.</button>
         
         <div id="step1" class="hidden">
             <p>Remember the time we laughed so hard over [Memory 1]? Solve this: What was the name of the place?</p>
@@ -58,7 +62,7 @@
 
     <script>
         function nextStep(step) {
-            document.querySelector('button').style.display = 'none';
+            document.querySelector('.container').innerHTML = document.getElementById(`step${step}`).outerHTML;
             document.getElementById(`step${step}`).classList.remove('hidden');
         }
 
