@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MJ's Treasure Hunt</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        .container { max-width: 600px; margin: 50px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .hidden { display: none; }
+        button { padding: 10px 20px; margin: 10px; border: none; background-color: #008CBA; color: white; cursor: pointer; border-radius: 5px; }
+        button:hover { background-color: #005f73; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MJ's Treasure Hunt</h1>
+        <p id="story">Welcome, MJ! Your journey begins now. Click below to start!</p>
+        <button onclick="nextStep(1)">Start</button>
+        
+        <div id="step1" class="hidden">
+            <p>Remember the time we laughed so hard over [Memory 1]? Solve this: What was the name of the place?</p>
+            <input type="text" id="answer1" placeholder="Your Answer">
+            <button onclick="checkAnswer(1, 'CorrectAnswer1')">Submit</button>
+        </div>
+        
+        <div id="step2" class="hidden">
+            <p>Step 2: What was the first movie we watched together?</p>
+            <input type="text" id="answer2" placeholder="Your Answer">
+            <button onclick="checkAnswer(2, 'CorrectAnswer2')">Submit</button>
+        </div>
+        
+        <div id="step3" class="hidden">
+            <p>Step 3: What’s one thing I always say when I’m excited?</p>
+            <input type="text" id="answer3" placeholder="Your Answer">
+            <button onclick="checkAnswer(3, 'CorrectAnswer3')">Submit</button>
+        </div>
+        
+        <div id="step4" class="hidden">
+            <p>Step 4: Which song reminds me of you every time I hear it?</p>
+            <input type="text" id="answer4" placeholder="Your Answer">
+            <button onclick="checkAnswer(4, 'CorrectAnswer4')">Submit</button>
+        </div>
+        
+        <div id="step5" class="hidden">
+            <p>Final Step: What’s one dream I always told you I had?</p>
+            <input type="text" id="answer5" placeholder="Your Answer">
+            <button onclick="checkAnswer(5, 'CorrectAnswer5')">Submit</button>
+        </div>
+        
+        <div id="final" class="hidden">
+            <h2>Congratulations, MJ!</h2>
+            <p>You’ve completed the treasure hunt. Here’s your final gift:</p>
+            <a href="your-book-link-here" target="_blank"><button>Open Your Special Book</button></a>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(step) {
+            document.querySelector('button').style.display = 'none';
+            document.getElementById(`step${step}`).classList.remove('hidden');
+        }
+
+        function checkAnswer(step, correctAnswer) {
+            let userAnswer = document.getElementById(`answer${step}`).value.trim().toLowerCase();
+            if (userAnswer === correctAnswer.toLowerCase()) {
+                document.getElementById(`step${step}`).classList.add('hidden');
+                if (step < 5) {
+                    document.getElementById(`step${step + 1}`).classList.remove('hidden');
+                } else {
+                    document.getElementById('final').classList.remove('hidden');
+                }
+            } else {
+                alert('Try again!');
+            }
+        }
+    </script>
+</body>
+</html>
