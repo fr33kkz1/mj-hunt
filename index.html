@@ -17,40 +17,40 @@
     <div class="container">
         <h1 style="color: #ff4081;">MJ's Treasure Hunt</h1>
         <p>Welcome MJ!</p>
-        <p><strong>HAPPY BIRTHDAY TO YOU AGAIN</strong></p>
+        <p><strong>HAPPY BIRTHDAY TO YOU AGAIN CUTIE!</strong></p>
         <p>I've made this <em>SIMPLE</em> treasure hunt for you, and then you unlock a small prize.</p>
         <p>Are you excited and ready?</p>
         <button onclick="nextStep(1)">YES!</button>
         <button onclick="nextStep(1)">Yes.</button>
         
         <div id="step1" class="hidden">
-            <p>Remember the time we laughed so hard over [Memory 1]? Solve this: What was the name of the place?</p>
+            <p>What's the best thing that happened to me? Solve this: Look in the mirror?</p>
             <input type="text" id="answer1" placeholder="Your Answer">
-            <button onclick="checkAnswer(1, 'CorrectAnswer1')">Submit</button>
+            <button onclick="checkAnswer(1, 'ME', 'MJ')">Submit</button>
         </div>
         
         <div id="step2" class="hidden">
-            <p>Step 2: What was the first movie we watched together?</p>
+            <p>Who am I? (You should know already; Hint - What do you like to call me?)</p>
             <input type="text" id="answer2" placeholder="Your Answer">
-            <button onclick="checkAnswer(2, 'CorrectAnswer2')">Submit</button>
+            <button onclick="checkAnswer(2, 'Sky', 'sky')">Submit</button>
         </div>
         
         <div id="step3" class="hidden">
-            <p>Step 3: What’s one thing I always say when I’m excited?</p>
+            <p>When's my birthday? (Shouldn't be too hard given you have so many ways to find it 👀)</p>
             <input type="text" id="answer3" placeholder="Your Answer">
-            <button onclick="checkAnswer(3, 'CorrectAnswer3')">Submit</button>
+            <button onclick="checkAnswer(3, '30th March 2001', '30/03/2001', '30 March')">Submit</button>
         </div>
         
-        <div id="step4" class="hidden">
-            <p>Step 4: Which song reminds me of you every time I hear it?</p>
+       <div id="step4" class="hidden">
+            <p>Where did we go on my birthday when you worked in Kinara? (Hint - Name of the place)</p>
             <input type="text" id="answer4" placeholder="Your Answer">
-            <button onclick="checkAnswer(4, 'CorrectAnswer4')">Submit</button>
+            <button onclick="checkAnswer(4, 'Escape Rooms')">Submit</button>
         </div>
         
-        <div id="step5" class="hidden">
-            <p>Final Step: What’s one dream I always told you I had?</p>
+         <div id="step5" class="hidden">
+            <p>What's my best memory of you? (THINK HARD MJ)</p>
             <input type="text" id="answer5" placeholder="Your Answer">
-            <button onclick="checkAnswer(5, 'CorrectAnswer5')">Submit</button>
+            <button onclick="checkFinalAnswer()">Submit</button>
         </div>
         
         <div id="final" class="hidden">
@@ -66,9 +66,9 @@
             document.getElementById(`step${step}`).classList.remove('hidden');
         }
 
-        function checkAnswer(step, correctAnswer) {
+        function checkAnswer(step, ...correctAnswers) {
             let userAnswer = document.getElementById(`answer${step}`).value.trim().toLowerCase();
-            if (userAnswer === correctAnswer.toLowerCase()) {
+            if (correctAnswers.some(ans => ans.toLowerCase() === userAnswer)) {
                 document.getElementById(`step${step}`).classList.add('hidden');
                 if (step < 5) {
                     document.getElementById(`step${step + 1}`).classList.remove('hidden');
