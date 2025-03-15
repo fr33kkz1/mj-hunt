@@ -62,23 +62,23 @@
 
     <script>
         function nextStep(step) {
-            document.querySelector('.container').innerHTML = document.getElementById(`step${step}`).outerHTML;
-            document.getElementById(`step${step}`).classList.remove('hidden');
-        }
+    document.getElementById(`step${step}`).classList.remove('hidden');
+}
 
-        function checkAnswer(step, ...correctAnswers) {
-            let userAnswer = document.getElementById(`answer${step}`).value.trim().toLowerCase();
-            if (correctAnswers.some(ans => ans.toLowerCase() === userAnswer)) {
-                document.getElementById(`step${step}`).classList.add('hidden');
-                if (step < 5) {
-                    document.getElementById(`step${step + 1}`).classList.remove('hidden');
-                } else {
-                    document.getElementById('final').classList.remove('hidden');
-                }
-            } else {
-                alert('Try again!');
-            }
+function checkAnswer(step, ...correctAnswers) {
+    let userAnswer = document.getElementById(`answer${step}`).value.trim().toLowerCase();
+    if (correctAnswers.some(ans => ans.toLowerCase() === userAnswer)) {
+        document.getElementById(`step${step}`).classList.add('hidden');
+        if (step < 5) {
+            document.getElementById(`step${step + 1}`).classList.remove('hidden');
+        } else {
+            document.getElementById('final').classList.remove('hidden');
         }
+    } else {
+        alert('Try again!');
+    }
+}
+
     </script>
 </body>
 </html>
